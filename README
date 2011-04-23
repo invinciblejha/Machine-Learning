@@ -1,0 +1,18 @@
+Para rodar a lista 2, deve-se inserir os parâmetros necessários no formato correto
+/* parâmetros inválidos não estão sendo tratados */
+
+os valores podem variar da forma que desejar, segue abaixo os parâmetros utilizados para o relatório:
+
+python main.py -d blood -a 0.01 -w 0.8 -e 0.5 -l 1000
+python main.py -d wine -a 0.02 -w 0.6 -e 0.5 -l 10000
+
+parametros:
+
+	-d <DATABASE> - especifica a base de dados 
+	-a <FLOAT> - especifica o valor inicial do alpha (i.e. 0.01)
+	-w <FLOAT> - o valor da janela
+	-e <FLOAT> - o valor do balanceamento
+	-l <INT> - o limite de instancias para se treinar
+
+
+
