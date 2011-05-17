@@ -1,18 +1,13 @@
-Para rodar a lista 2, deve-se inserir os parâmetros necessários no formato correto
-/* parâmetros inválidos não estão sendo tratados */
+Here are some things that I'm working for my learning machine class.
+Feel free to use, modify, or do whatever you want with this code.
 
-os valores podem variar da forma que desejar, segue abaixo os parâmetros utilizados para o relatório:
+Please, if you do something new, send me a pull request or a patch.
 
-python main.py -d blood -a 0.01 -w 0.8 -e 0.5 -l 1000
-python main.py -d wine -a 0.02 -w 0.6 -e 0.5 -l 10000
+If you wanna colaborate, there are some #TODO in the code and
+you can add other algorhitms too.
 
-parametros:
+Some of the functions weren't tested, so, you can do that too.
 
-	-d <DATABASE> - especifica a base de dados 
-	-a <FLOAT> - especifica o valor inicial do alpha (i.e. 0.01)
-	-w <FLOAT> - o valor da janela
-	-e <FLOAT> - o valor do balanceamento
-	-l <INT> - o limite de instancias para se treinar
-
-
+tks,
+Dayvid Victor
 
