@@ -12,7 +12,6 @@ def get_knn(k, sample, training, dist = euclidian_distance, range_vector = []):
 	nearest.sort(key = lambda near: near[-1])
 	return [near[:-1] for near in nearest[:k]]
 
-
 def get_knn_indexs(k, sample, training, dist = euclidian_distance, range_vector = []):
 	nearest = []
 	for i in range(len(training)):

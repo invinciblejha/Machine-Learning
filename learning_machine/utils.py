@@ -25,14 +25,6 @@ def get_transposte(matrix):
 		b.append([c for c in [l[i] for l in matrix]])
 	return b
 
-def euclidian_distance_i(num_a, num_b, num_range = 1):
-	return abs((float(num_a) - float(num_b))/num_range)
-
-def euclidian_distance(a, b, data_range = []):
-	if data_range == []:
-		data_range = [1 for i in range(len(a))]
-	return sum([euclidian_distance_i(ai, bi, ri)**2 for ai, bi, ri in zip(a,b, data_range)])
-
 def calc_constants(t_training, categories):
 	constants = []
 	for i in range(len(t_training) - 1):
