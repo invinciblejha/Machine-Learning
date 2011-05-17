@@ -1,10 +1,9 @@
 import math
 
-'''
-function that takes de euclidian distance of an atribute i.
-'''
-def euclidian_distance_i(num_a, num_b, num_range = 1):
-	return abs((float(num_a) - float(num_b))/num_range)
+
+def is_unknown(att):
+	return att == '?'
+
 
 '''
 function that takes the euclidian distance of two vectors of numerical data.
@@ -13,27 +12,35 @@ data_range can be defined using the function get_data_range.
 def euclidian_distance(a, b, data_range = []):
 	if data_range == []:
 		data_range = [1 for i in range(len(a))]
+	
 	return sum([euclidian_distance_i(ai, bi, ri)**2 for ai, bi, ri in zip(a,b, data_range)])
+
+'''
+function that takes de euclidian distance of an atribute i.
+'''
+def euclidian_distance_i(num_a, num_b, num_range = 1):
+	return abs((float(num_a) - float(num_b))/num_range)
 
 
 '''
 function that takes the hamming distance of two vectors with categorical data.
 '''
 def hamming_distance(a, b):
-	hamming_distance_i = lambda ai, bi: (0 if ai == bi else 1)
 	return sum(hamming_distance_i(ai, bi) for ai,bi in zip(a,b))
 
+def hamming_distace_i(ai,bi):
+	return (0 if ai == bi else 1)
 
-'''
-Function that takes the vdm distance of two vectors with categorical data.
-The VDM (Value Difference Metric) finds out when two values have the same
-distribution over some class.
-
-Is usually better than Hamming Distance.
-
-NOT TESTED
-'''
 def vdm(a, b, training):
+	'''
+	Function that takes the vdm distance of two vectors with categorical data.
+	The VDM (Value Difference Metric) finds out when two values have the same
+	distribution over some class.
+
+	Is usually better than Hamming Distance.
+
+	NOT TESTED
+	'''
 	return math.sqrt(sum([vdm_i(i, ai, bi) for i, ai, bi in zip(range(len(a)),a,b)]))
 
 '''
@@ -56,5 +63,51 @@ def vdm_i(i, ai, bi, training, q = 2):
 
 	return vdmi
 
+
+def vdm_discretized(a, b, training):
+	pass #TODO
+
+def vdm_interpolad(a, b, training):
+	pass #TODO
+
+'''
+Heterogeneous Euclidian-Overlap Metric
+
+Vector distance for heterogeneous data.
+HEOM uses euclidian distance for numerical data
+and hamming distance for categorical data.
+
+function parameters:
+	a - vector to compare
+	b - vector to compare
+	data_nature - the data nature of the attributes of de vectors to be compared
+		      it is 'n' for numerical and 'c' for categorical.
+		      if not specified it will assume that the numerical is the official measure
+
+'''
+def heom(a, b, data_range = [], data_nature = []):
+
+	if len(data_range) == 0:
+		data_range = [1 for i in range(len(a))]
+	if len(data_nature) == 0:
+		data_nature = ['n' for i in range(len(a))]
+	
+	heom_i_list = [heom_i(ai, bi, r, n) for ai, bi, r, n in zip(a, b, data_range, data_nature)]
+	return math.sqrt(sum(heom_i_list))
+	
+	
+def heom_i(ai, bi, att_range, nature):
+	
+	if is_unknown(ai) and is_unknown(bi):
+		return 0
+	elif is_unknown(ai) or is_unknown(bi):
+		return 1
+
+	if nature == 'c':
+		return hamming_distance_i(ai, bi)		
+	elif nature == 'n':
+		return euclidian_distance_i(float(ai), float(bi), att_range)
+
+	return 0
 
 
