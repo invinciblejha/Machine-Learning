@@ -1,7 +1,7 @@
 import utils
 from knn import get_knn
 from knn import get_knn_result
-from utils import euclidian_distance
+from distance import euclidian_distance
 
 def load_list(string, separator = "\t"):
 	try:

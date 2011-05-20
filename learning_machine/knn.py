@@ -1,5 +1,5 @@
 import math
-from utils import euclidian_distance
+from distance import euclidian_distance
 from utils import get_range_vector
 from utils import vector_operation
 
