@@ -3,12 +3,12 @@ import getopt
 from aux import load_list
 from aux import get_acertion_tax 
 from knn import get_knn
-from utils import euclidian_distance
+from distance import euclidian_distance
 from utils import get_range_vector
-from lvq_utils import generate_prototypes
-from lvq import lvq1
-from lvq import lvq2
-from lvq import lvq3
+from prototypes.lvq_utils import generate_prototypes
+from prototypes.lvq import lvq1
+from prototypes.lvq import lvq2
+from prototypes.lvq import lvq3
 
 if __name__ == '__main__':
 	print " K	KNN	LVQ1	LVQ2	LVQ3\n"

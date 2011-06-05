@@ -1,6 +1,6 @@
 import math
 from knn import get_knn_indexs
-from utils import euclidian_distance
+from distance import euclidian_distance
 from utils import vector_operation
 
 
