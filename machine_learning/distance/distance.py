@@ -4,8 +4,6 @@ import math
 def is_unknown(att):
 	return att == '?'
 
-
-
 def vdm_discretized(a, b, training):
 	pass #TODO
 

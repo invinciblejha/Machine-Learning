@@ -1,5 +1,6 @@
-import knn
 import numpy as np
+from machine_learning.utils import *
+from machine_learning.feat_analysis import pca
 from Group import Group
 
 def generate_initial_groups(training):

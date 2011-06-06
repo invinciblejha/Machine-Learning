@@ -1,6 +1,6 @@
 import sys
 import getopt
-from aux import load_list
+from machine_learning.aux import load_list
 from aux import get_acertion_tax 
 from knn import get_knn
 from distance import euclidian_distance
