@@ -24,7 +24,6 @@ def update_all_groups(groups):
 		else:
 			g.update_all()
 
-
 def alg(groups):
 	exit_count = 0
 	for group in groups:
@@ -36,7 +35,7 @@ def alg(groups):
 		for sample in group.get_instances():
 			[nearest_rep] = knn.get_knn(1, sample, all_representants)
 
-			if nearest_rep != group.get_representant()
+			if nearest_rep != group.get_representant():
 				instance_and_nearest.append((sample, nearest_rep))
 				
 		if len(instance_and_nearest) == 0:
@@ -59,16 +58,14 @@ def alg(groups):
 				bad_instance = tupla[0]
 				nearest_representant = tupla[1]
 				
-				if nearest_representant != group.get_representant():
-					if nearest_representant[-1] != group.get_classe():
-						group.remove_instance(bad_instance)
-						new_group.add_instance(bad_instance)
-						
-					else:
-						group_index = -1
-						[to_add] = filter(lambda g: g.get_representant() == nearest_representant, groups)
-						to_add.add_instance(bad_instance)
-						group.remove_instance(bad_instance)
+				if nearest_representant != group.get_representant() and nearest_representant[-1] != group.get_classe():
+					group.remove_instance(bad_instance)
+					new_group.add_instance(bad_instance)
+				elif nearest_representant != group.get_representant():
+					group_index = -1
+					[to_add] = filter(lambda g: g.get_representant() == nearest_representant, groups)
+					to_add.add_instance(bad_instance)
+					group.remove_instance(bad_instance)
 
 		if not new_group.is_empty():
 			new_group.update_all()

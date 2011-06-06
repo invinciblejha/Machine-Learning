@@ -23,5 +23,3 @@ def get_knn_indexs(k, sample, training, dist = euclidian_distance, range_vector 
 def get_knn_result(k_nearest):
 	classes = [near[-1] for near in k_nearest]
 	return max(set(classes), key = classes.count)
-
-
