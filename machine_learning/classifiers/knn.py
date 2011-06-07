@@ -1,7 +1,7 @@
 import math
-from ..distance.euclidian_distance import euclidian_distance
-from utils import get_range_vector
-from utils import vector_operation
+from machine_learning.distance.euclidian_distance import euclidian_distance
+from machine_learning.utils.utils import get_range_vector
+from machine_learning.utils.utils import vector_operation
 
 def get_knn(k, sample, training, dist = euclidian_distance, range_vector = []):
 	nearest = []

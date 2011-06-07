@@ -1,5 +1,8 @@
 import sys
 import getopt
+
+from ..examples.knn import knn
+
 from machine_learning.aux import load_list
 from aux import get_acertion_tax 
 from knn import get_knn

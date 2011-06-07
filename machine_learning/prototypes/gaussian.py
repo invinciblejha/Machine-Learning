@@ -1,7 +1,7 @@
 import random
-from utils import get_transposte
-from utils import get_media
-from utils import get_variance
+from machine_learning.utils.utils import get_transposte
+from machine_learning.utils.utils import get_media
+from machine_learning.utils.utils import get_variance
 
 def generate_prototypes(matrix, qtd_c = 5):
 	prototypes = []

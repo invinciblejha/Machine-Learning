@@ -1,5 +1,6 @@
 import numpy as np
-from machine_learning.utils import *
+from machine_learning.classifiers.knn import *
+from machine_learning.utils.utils import *
 from machine_learning.feat_analysis import pca
 from Group import Group
 

@@ -1,8 +1,7 @@
 import math
-from knn import get_knn_indexs
-from distance import euclidian_distance
-from utils import vector_operation
-
+from machine_learning.classifiers.knn import get_knn_indexs
+from machine_learning.distance.euclidian_distance import euclidian_distance
+from machine_learning.utils.utils import vector_operation
 
 def in_window(x, mi, mj, w):
 	di = euclidian_distance(mi, x)
