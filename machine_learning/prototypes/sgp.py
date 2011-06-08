@@ -1,7 +1,7 @@
 import numpy as np
 import machine_learning.classifiers.knn as knn
 from machine_learning.utils.utils import *
-from machine_learning.feat_analysis import pca
+import machine_learning.feat_analysis.pca as hama
 from Group import Group
 
 def generate_initial_groups(training):
@@ -30,7 +30,6 @@ def update_all_groups(groups):
 def alg(groups):
 	exit_count = 0
 	for group in groups:
-		print [g.get_representant() for g in groups]
 
 		all_representants = get_all_representants(groups)
 	

@@ -9,7 +9,6 @@ if __name__ == '__main__':
 	training = load_database('databases/'+ sys.argv[2] + '.train')
 	
 	prototypes = sgp(training)
-	print prototypes
 
 	print 'tamanho da base original %d' % (len(training))
 	print 'tamanho da base pos-sqp  %d' % (len(prototypes))
