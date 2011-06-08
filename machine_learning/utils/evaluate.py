@@ -1,7 +1,7 @@
 from machine_learning.classifiers.knn import *
 from machine_learning.distance.euclidian_distance import *
 
-def get_acertion_tax(k, test_list, training_list, range_vector, dist = euclidian_distance):
+def get_acertion_tax(k, test_list, training_list, range_vector = [], dist = euclidian_distance):
 	right = 0
 	for test_sample in test_list:
 		nearest = get_knn(k, test_sample, training_list, dist, range_vector)

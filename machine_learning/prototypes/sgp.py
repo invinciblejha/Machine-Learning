@@ -1,5 +1,5 @@
 import numpy as np
-from machine_learning.classifiers.knn import *
+import machine_learning.classifiers.knn as knn
 from machine_learning.utils.utils import *
 from machine_learning.feat_analysis import pca
 from Group import Group
@@ -12,7 +12,8 @@ def generate_initial_groups(training):
 
 	for c in uniq_classes:
 		instances_c = filter(lambda inst: inst[-1] == c, training)
-		groups.append(Group(instances_c, update = True))
+		g = Group(instances_c, update = True)
+		groups.append(g)
 
 	return groups
 
@@ -29,6 +30,8 @@ def update_all_groups(groups):
 def alg(groups):
 	exit_count = 0
 	for group in groups:
+		print [g.get_representant() for g in groups]
+
 		all_representants = get_all_representants(groups)
 	
 		instance_and_nearest = []
@@ -75,13 +78,14 @@ def alg(groups):
 
 		update_all_groups(groups)
 
-		if exit_count != len(groups):
-			return alg(groups)
+	if exit_count != len(groups):
+		return alg(groups)
 		
-		return groups
+	return groups
 			
-
-			
-	
+def sgp(training):
+	groups = generate_initial_groups(training)
+	groups = alg(groups)
+	return [g.get_representant() for g in groups]
 	
 	

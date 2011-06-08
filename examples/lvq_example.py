@@ -27,18 +27,18 @@ if __name__ == '__main__':
 	epsilon = float(optlist.get('-e')) 
 	limit = float(optlist.get('-l'))
 
-	training = load_database(database + ".train")
-	test = load_database(database + ".test")
+	training = load_database('databases/' + database + ".train")
+	test = load_database('databases/' + database + ".test")
 	
 	range_vector = get_range_vector([e[:-1] for e in training])
 
 	prototypes = []
 	if not optlist.has_key('--generate-prototypes'):
-		prototypes = load_database(database + '.lqvprototypes')
+		prototypes = load_database('databases' + database + '.lqvprototypes')
 	
 	if (len(prototypes) == 0):
 		prototypes = generate_prototypes(training)
-		f = open(database+'.lvqprototypes','w')
+		f = open('databases/' + database + '.lvqprototypes','w')
 		for e in prototypes:
 			for a in e:
 				f.write(str(a) + '\t')
