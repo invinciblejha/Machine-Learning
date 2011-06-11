@@ -12,6 +12,13 @@ class Group:
 			self.update_representant()
 			self.update_classe()
 
+
+	def __add__(self, other):
+		r = Group()
+		r.instances = self.get_instances() + other.get_instances()
+		r.update_all()
+		return r
+
 	def add_instance(self, instance, update = False):
 		self.instances.append(instance)
 		if update == True:
@@ -55,3 +62,6 @@ class Group:
 
 	def is_empty(self):
 		return self.count_instances() == 0
+
+
+

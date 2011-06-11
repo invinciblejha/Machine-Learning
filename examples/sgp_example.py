@@ -1,12 +1,16 @@
-import sys
-
 from machine_learning.prototypes.sgp import sgp
 from machine_learning.utils.evaluate import get_acertion_tax
 from machine_learning.utils.database_loader import load_database
+import sys
 
 if __name__ == '__main__':
-	test = load_database('databases/'+ sys.argv[2] + '.test')
-	training = load_database('databases/'+ sys.argv[2] + '.train')
+
+	database = 'glass'	
+	if len(sys.argv) > 1:
+		database = sys.argv[2]
+
+	test = load_database('databases/'+ database + '.test')
+	training = load_database('databases/'+ database + '.train')
 	
 	prototypes = sgp(training)
 

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import numpy as np
 import machine_learning.classifiers.knn as knn
 from machine_learning.utils.utils import *
@@ -27,6 +29,10 @@ def update_all_groups(groups):
 		else:
 			g.update_all()
 
+def get_group_by_representant(representant, groups):
+	[group] = filter(lambda g: g.get_representant() == representant, groups)
+	return group
+
 def alg(groups):
 	exit_count = 0
 	for group in groups:
@@ -40,7 +46,8 @@ def alg(groups):
 			[nearest_rep] = knn.get_knn(1, sample, all_representants)
 
 			if nearest_rep != group.get_representant():
-				instance_and_nearest.append((sample, nearest_rep))
+				nearest_g = get_group_by_representant(nearest_rep, groups)
+				instance_and_nearest.append((sample, nearest_g))
 				
 		if len(instance_and_nearest) == 0:
 			exit_count = exit_count + 1
@@ -54,22 +61,24 @@ def alg(groups):
 			
 			for inst in group.get_instances():
 				[di] = hama.proj(P, inst[:-1], med)
-				if -d < di:
+				if d < di:
 					group.remove_instance(inst)
 					new_group.add_instance(inst)
 		else:
 			for tupla in instance_and_nearest:
 				bad_instance = tupla[0]
-				nearest_representant = tupla[1]
+				nearest_g = tupla[1]
 				
-				if nearest_representant != group.get_representant() and nearest_representant[-1] != group.get_classe():
+				# [new_nearest] = knn.get_knn(1, bad_instance, [nearest_g.get_representant(), group.get_representant()])
+				# if new_nearest == nearest_g.get_representant():
+				if nearest_g.get_representant() != group.get_representant() and nearest_g.get_classe() != group.get_classe():
 					group.remove_instance(bad_instance)
 					new_group.add_instance(bad_instance)
-				elif nearest_representant != group.get_representant():
-					group_index = -1
-					[to_add] = filter(lambda g: g.get_representant() == nearest_representant, groups)
-					to_add.add_instance(bad_instance)
+				elif nearest_g.get_representant() != group.get_representant(): # mas são da mesma classe
+					nearest_g.add_instance(bad_instance)
 					group.remove_instance(bad_instance)
+				#	nearest_g.update_all()
+				#	group.update_all()
 
 		if not new_group.is_empty():
 			new_group.update_all()
@@ -81,10 +90,39 @@ def alg(groups):
 		return alg(groups)
 		
 	return groups
+
+def merging_step(groups):
+	representants = get_all_representants(groups)
+	for group in groups:
+		merge = True
+		snd_nearest_group = None
+		for pattern in group.get_instances():
+			nearests = knn.get_knn(2, pattern, representants)
+			snd_tmp = get_group_by_representant(nearests[1], groups)
+			if snd_nearest_group == None:
+				snd_nearest_group = snd_tmp
+				if snd_nearest_group.get_classe() != group.get_classe():
+					merge = False
+					break
+			elif snd_tmp != snd_nearest_group:
+				merge = False
+				break
+		
+		if merge == True and snd_nearest_group != None:
+			new_group = snd_nearest_group + group
+			groups.remove(group)
+			groups.remove(snd_nearest_group)
+			groups.append(new_group)
+			
+			merging_step(groups) # RECURSSION
+			return True
+	return False	
+
 			
 def sgp(training):
 	groups = generate_initial_groups(training)
 	groups = alg(groups)
+	merging_step(groups)
 	return [g.get_representant() for g in groups]
 	
 	
