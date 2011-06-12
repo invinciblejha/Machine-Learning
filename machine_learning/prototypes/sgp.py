@@ -118,7 +118,7 @@ def merging_step(groups):
 			return True
 	return False	
 
-def prunning_step(groups, r_min = 0.1, r_mis):
+def prunning_step(groups, r_min = 0.1, r_mis = 0.1):
 	to_remove = []
 	max_group_len = float(len(max(groups, key = len)))
 	for group in groups:
@@ -137,7 +137,7 @@ def sgp(training):
 	return [g.get_representant() for g in groups]
 	
 
-def sgp2(training, r_min, r_mis):
+def sgp2(training, r_min = 0.1, r_mis = 0.1):
 	groups = generate_initial_groups(training)
 	groups = alg(groups)
 	merging_step(groups)
