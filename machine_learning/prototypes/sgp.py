@@ -118,11 +118,32 @@ def merging_step(groups):
 			return True
 	return False	
 
+def prunning_step(groups, r_min = 0.1, r_mis):
+	to_remove = []
+	max_group_len = float(len(max(groups, key = len)))
+	for group in groups:
+		if len(group)/max_group_len < r_min:
+			to_remove.append(group)
+	
+	for group in to_remove:
+		groups.remove(group)
+
+	return len(to_remove) > 0
 			
 def sgp(training):
 	groups = generate_initial_groups(training)
 	groups = alg(groups)
-	merging_step(groups)
+	# merging_step(groups)
 	return [g.get_representant() for g in groups]
 	
+
+def sgp2(training, r_min, r_mis):
+	groups = generate_initial_groups(training)
+	groups = alg(groups)
+	merging_step(groups)
+	prunning_step(groups, r_min, r_mis)	#TODO parte que usa o RMIS
+	return [g.get_representant() for g in groups]
 	
+
+
+

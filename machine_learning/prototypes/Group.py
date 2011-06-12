@@ -19,6 +19,9 @@ class Group:
 		r.update_all()
 		return r
 
+	def __len__(self):
+		return self.count_instances()
+
 	def add_instance(self, instance, update = False):
 		self.instances.append(instance)
 		if update == True:
