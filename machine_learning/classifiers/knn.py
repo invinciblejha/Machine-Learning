@@ -12,6 +12,15 @@ def get_knn(k, sample, training, dist = euclidian_distance, range_vector = []):
 	nearest.sort(key = lambda near: near[-1])
 	return [near[:-1] for near in nearest[:k]]
 
+def load_knn (k, sample, training, weight = False, dist = euclidian_distance, range_vector = None):
+    nearests = []
+    for instance in training:
+        instance_dist = dist(instance[:-1], sample[:-1], range_vector)
+        nearests.append((instance, instance_dist))
+    
+    nearests.sort(key = lambda near: near[-1])
+    return map(lambda tup: tup[0], nearests)
+
 def get_knn_indexs(k, sample, training, dist = euclidian_distance, range_vector = []):
 	nearest = []
 	for i in range(len(training)):
