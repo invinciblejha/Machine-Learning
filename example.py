@@ -1,5 +1,7 @@
 from machine_learning.prototypes.enn import enn
 from machine_learning.prototypes.cnn import cnn
+from machine_learning.prototypes.tomek_links import tomek_links
+
 
 
 if __name__ == '__main__':
@@ -7,3 +9,4 @@ if __name__ == '__main__':
     print training
     print enn(training)
     print cnn(training)
+    print tomek_links(training)
