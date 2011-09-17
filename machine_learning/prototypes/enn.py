@@ -5,8 +5,10 @@ from machine_learning.distance.euclidian_distance import euclidian_distance
 
 def enn(training, k = 3, weight = False, dist = euclidian_distance, range_vector = None):
     """
-    Edited Nearest Neighbor 
+    Edited Nearest Neighbor
+
     """
+    #TODO need to treat if weight == True
     markeds = []
     for sample in training:
         nearests = get_knn(k+1, sample, training, dist)
