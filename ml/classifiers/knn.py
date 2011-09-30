@@ -19,3 +19,5 @@ def get_knn_infos (k, sample, train_data, train_class):
 
     distances.sort(key = lambda e: e[-1])
     return distances[:k]
+
+

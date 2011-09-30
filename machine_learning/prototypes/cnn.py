@@ -21,3 +21,4 @@ def cnn (training, dist = euclidian_distance, range_vector = None):
 
     return prototypes        
         
+
