@@ -7,7 +7,7 @@ def knn_result (k, sample, train_data, train_class, weight = False):
     insts, classes, dists = get_knn_infos(k, sample, train_data, train_class)
 
     if weight == False:
-        return max(set(classes)
+        return max(set(classes))
 
 
 def get_knn_infos (k, sample, train_data, train_class):
@@ -19,5 +19,3 @@ def get_knn_infos (k, sample, train_data, train_class):
 
     distances.sort(key = lambda e: e[-1])
     return distances[:k]
-
-
