@@ -3,14 +3,13 @@ import matplotlib
 import matplotlib.pyplot as plt
 from machine_learning.utils.database_loader import load_database
 
-def plot (file_name, classe_a = '0', classe_b = '1', separator = ','):
-    database = load_database(file_name, separator)
+def plot (database, classe_a = '0', classe_b = '1'):
     x_a = [v[0] for v in filter(lambda e: e[-1] == classe_a, database)]
     y_a = [v[1] for v in filter(lambda e: e[-1] == classe_a, database)]
     x_b = [v[0] for v in filter(lambda e: e[-1] == classe_b, database)]
     y_b = [v[1] for v in filter(lambda e: e[-1] == classe_b, database)]
     
-    plt.plot(x_a, y_a, 'r--', x_b, y_b, 'bs')
+    plt.plot(x_a, y_a, 'bo', x_b, y_b, 'rs')
     plt.show()
 
 
@@ -33,8 +32,7 @@ def old_plot():
     plt.show()
 
 
-if __name__ == '__main__':
-    plot('artificial_databases/a_database.data')
+    plot('artificial_databases/c_database.data')
 
 
 
