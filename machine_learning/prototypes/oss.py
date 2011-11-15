@@ -3,10 +3,11 @@ import math
 import machine_learning.classifiers.knn as knn
 from machine_learning.distance.euclidian_distance import euclidian_distance
 from machine_learning.prototypes.cnn import cnn_for_unbalanced_datasets
+from machine_learning.prototypes.tomek_links import tomek_links_for_unbalanced_datasets
 
 def oss(training, dist = euclidian_distance):
 
-    classes = set([t[-1] for t in training])
+    classes = list(set([t[-1] for t in training]))
 
     min_class = classes[0]
     for c in min_class:

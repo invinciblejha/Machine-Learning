@@ -30,7 +30,8 @@ def update_all_groups(groups):
 			g.update_all()
 
 def get_group_by_representant(representant, groups):
-	[group] = filter(lambda g: g.get_representant() == representant, groups)
+	gs = filter(lambda g: g.get_representant() == representant, groups)
+	group = gs[0]
 	return group
 
 def alg(groups):
@@ -43,7 +44,12 @@ def alg(groups):
 		new_group = Group()
 	
 		for sample in group.get_instances():
-			[nearest_rep] = knn.get_knn(1, sample, all_representants)
+			[n1,n2] = knn.get_knn(2, sample, all_representants)
+
+			nearest_rep = n1
+			if n1[:-1] == n2[:-1]:
+				if sample[-1] == n2[-1]:
+					nearest_rep = n2
 
 			if nearest_rep != group.get_representant():
 				nearest_g = get_group_by_representant(nearest_rep, groups)

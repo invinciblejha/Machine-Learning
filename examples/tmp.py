@@ -15,34 +15,14 @@ import plot as plt
 
 if __name__ == '__main__':
     training = load_database('artificial_databases/c_database.data', separator = ',')
-
-    results = []    
-
-    results.append(enn(training))
-    print '1'
-    results.append(cnn(training))
-    print '2'
-    results.append(tomek_links(training))
-    print '3'
-    results.append(oss(training))
-    print '4'
-
-    prototypes = generate_prototypes(training)
-    print '5'
-    results.append(lvq1(training, prototypes))
-    print '6'
-    results.append(lvq2(training, prototypes))
-    print '7'
-    results.append(lvq3(training, prototypes))
-    print '8'
-
-    results.append(sgp(training))
-    print '9'
-    results.append(sgp2(training))
-    print '10'
+    results = []
+    s2 = sgp(training)
+    results.append((s2, len(s2)))
 
     for result in results:
-        plt.plot(result)
+        print result[1]
+        plt.plot(result[0])
+        a = raw_input('next?')
 
 
 
