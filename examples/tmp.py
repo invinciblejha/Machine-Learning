@@ -14,7 +14,7 @@ from machine_learning.prototypes.sgp import sgp2
 import plot as plt
 
 if __name__ == '__main__':
-    training = load_database('artificial_databases/c_database.data', separator = ',')
+    training = load_database('artificial_databases/a_database.data', separator = ',')
     results = []
     s2 = sgp(training)
     results.append((s2, len(s2)))

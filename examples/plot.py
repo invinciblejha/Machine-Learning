@@ -3,16 +3,26 @@ import matplotlib
 import matplotlib.pyplot as plt
 from machine_learning.utils.database_loader import load_database
 
-def plot (database, classe_a = '0', classe_b = '1'):
+def plotandsave(database, filename = 'tmp', title = 'titulo' , classe_a = '0', classe_b = '1'):
     x_a = [v[0] for v in filter(lambda e: e[-1] == classe_a, database)]
     y_a = [v[1] for v in filter(lambda e: e[-1] == classe_a, database)]
     x_b = [v[0] for v in filter(lambda e: e[-1] == classe_b, database)]
     y_b = [v[1] for v in filter(lambda e: e[-1] == classe_b, database)]
     
     plt.plot(x_a, y_a, 'bo', x_b, y_b, 'rs')
+    plt.title(title)
+    plt.savefig(filename)
+
+
+def plot (database, classe_a = '0', classe_b = '1', title = 'titulo'):
+    x_a = [v[0] for v in filter(lambda e: e[-1] == classe_a, database)]
+    y_a = [v[1] for v in filter(lambda e: e[-1] == classe_a, database)]
+    x_b = [v[0] for v in filter(lambda e: e[-1] == classe_b, database)]
+    y_b = [v[1] for v in filter(lambda e: e[-1] == classe_b, database)]
+    
+    plt.plot(x_a, y_a, 'bo', x_b, y_b, 'rs')
+    plt.title(title)
     plt.show()
-
-
 
 def old_plot():    
     #configurando propriedades

@@ -10,39 +10,34 @@ from machine_learning.prototypes.lvq import lvq2
 from machine_learning.prototypes.lvq import lvq3
 from machine_learning.prototypes.sgp import sgp
 from machine_learning.prototypes.sgp import sgp2
-
 import plot as plt
 
 if __name__ == '__main__':
-    training = load_database('artificial_databases/c_database.data', separator = ',')
 
-    results = []    
+    for i in [5,10]:
+        for j in [0,1,5,10,15]:
+            training = load_database('artificial_databases/' + str(i) + '_' + str(j) +  '_database.data', separator = ',')
 
-    results.append(enn(training))
-    print '1'
-    results.append(cnn(training))
-    print '2'
-    results.append(tomek_links(training))
-    print '3'
-    results.append(oss(training))
-    print '4'
+            results = []    
 
-    prototypes = generate_prototypes(training)
-    print '5'
-    results.append(lvq1(training, prototypes))
-    print '6'
-    results.append(lvq2(training, prototypes))
-    print '7'
-    results.append(lvq3(training, prototypes))
-    print '8'
+            enn_prototype = training
+            results.append(enn(training))
+           
+            results.append(cnn(training))
+            results.append(tomek_links(training))
+            results.append(oss(training))
 
-    results.append(sgp(training))
-    print '9'
-    results.append(sgp2(training))
-    print '10'
+            prototypes = generate_prototypes(training)
+            results.append(lvq1(training, prototypes))
+            results.append(lvq2(training, prototypes))
+            results.append(lvq3(training, prototypes))
 
-    for result in results:
-        plt.plot(result)
+            results.append(sgp(training))
+            results.append(sgp2(training))
+
+            for result in results:
+                print len(results)
+                plt.plot(result)
 
 
 
